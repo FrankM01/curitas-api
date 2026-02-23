@@ -2,7 +2,15 @@ package com.frank.curitas.medico;
 
 import com.frank.curitas.direccion.Direccion;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 @Table(name = "medicos")
 @Entity(name = "Medico")
 public class Medico {
