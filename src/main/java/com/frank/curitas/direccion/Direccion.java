@@ -1,13 +1,14 @@
 package com.frank.curitas.direccion;
 
-public record Direccion(
-        String calle,
-        String numero,
-        String complemento,
-        String barrio,
-        String ciudad,
-        String codigo_postal,
-        String estado
+import jakarta.persistence.Embeddable;
 
-) {
+@Embeddable
+public class Direccion {
+    private String calle;
+    private String numero;
+    private String complemento;
+    private String barrio;
+    private String ciudad;
+    private String codigo_postal;
+    private String estado;
 }
