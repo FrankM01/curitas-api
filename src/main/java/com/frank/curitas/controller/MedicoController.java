@@ -3,6 +3,7 @@ package com.frank.curitas.controller;
 import com.frank.curitas.medico.DatosRegistroMedico;
 import com.frank.curitas.medico.Medico;
 import com.frank.curitas.medico.MedicoRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class MedicoController {
 
     @Transactional
     @PostMapping
-    public void registrar(@RequestBody DatosRegistroMedico datos){
+    public void registrar(@RequestBody @Valid DatosRegistroMedico datos){
         repository.save(new Medico(datos));
     }
 }
