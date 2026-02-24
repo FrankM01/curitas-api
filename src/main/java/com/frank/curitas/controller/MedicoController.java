@@ -1,9 +1,6 @@
 package com.frank.curitas.controller;
 
-import com.frank.curitas.medico.DatosListaMedico;
-import com.frank.curitas.medico.DatosRegistroMedico;
-import com.frank.curitas.medico.Medico;
-import com.frank.curitas.medico.MedicoRepository;
+import com.frank.curitas.medico.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,5 +27,13 @@ public class MedicoController {
     @GetMapping
     public Page<DatosListaMedico> listar(@PageableDefault(size = 10, sort = {"nombre"}) Pageable paginacion){
         return repository.findAll(paginacion).map(DatosListaMedico::new);
+    }
+
+    @Transactional
+    @PutMapping
+    public void actualizar(@RequestBody @Valid DatosActualizacionMedico datos){
+        var medico = repository.getReferenceById(datos.id());
+        medico.actualizarInformaciones(datos);
+
     }
 }
