@@ -1,4 +1,4 @@
-package com.frank.curitas.paciente;
+package com.frank.curitas.domain.paciente;
 
 
 import org.springframework.data.domain.Page;

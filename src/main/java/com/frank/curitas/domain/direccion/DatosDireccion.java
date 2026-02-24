@@ -1,4 +1,4 @@
-package com.frank.curitas.direccion;
+package com.frank.curitas.domain.direccion;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

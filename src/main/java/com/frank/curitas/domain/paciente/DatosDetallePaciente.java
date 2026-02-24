@@ -1,6 +1,6 @@
-package com.frank.curitas.paciente;
+package com.frank.curitas.domain.paciente;
 
-import com.frank.curitas.direccion.Direccion;
+import com.frank.curitas.domain.direccion.Direccion;
 
 public record DatosDetallePaciente(
         String nombre,

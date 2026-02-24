@@ -1,6 +1,6 @@
 package com.frank.curitas.controller;
 
-import com.frank.curitas.paciente.*;
+import com.frank.curitas.domain.paciente.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

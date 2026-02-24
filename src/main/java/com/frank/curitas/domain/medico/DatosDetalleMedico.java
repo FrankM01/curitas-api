@@ -1,6 +1,6 @@
-package com.frank.curitas.medico;
+package com.frank.curitas.domain.medico;
 
-import com.frank.curitas.direccion.Direccion;
+import com.frank.curitas.domain.direccion.Direccion;
 
 public record DatosDetalleMedico(
         Long id,

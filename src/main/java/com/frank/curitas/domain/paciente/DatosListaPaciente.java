@@ -1,4 +1,4 @@
-package com.frank.curitas.paciente;
+package com.frank.curitas.domain.paciente;
 
 public record DatosListaPaciente(Long id, String nombre, String email, String documentoIdentidad) {
     public DatosListaPaciente(Paciente paciente) {

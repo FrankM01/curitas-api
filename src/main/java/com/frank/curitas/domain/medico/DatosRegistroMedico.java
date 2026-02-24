@@ -1,6 +1,6 @@
-package com.frank.curitas.medico;
+package com.frank.curitas.domain.medico;
 
-import com.frank.curitas.direccion.DatosDireccion;
+import com.frank.curitas.domain.direccion.DatosDireccion;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-package com.frank.curitas.medico;
+package com.frank.curitas.domain.medico;
 
 public enum Especialidad {
     ORTOPEDIA,
