@@ -1,4 +1,4 @@
-package com.frank.curitas.infra;
+package com.frank.curitas.infra.exceptions;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
