@@ -1,6 +1,8 @@
 package com.frank.curitas.controller;
 
 import com.frank.curitas.domain.usuario.DatosAutenticacion;
+import com.frank.curitas.domain.usuario.Usuario;
+import com.frank.curitas.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class AutenticacionController {
 
     @Autowired
+    private TokenService tokenService;
+
+
+    @Autowired
     private AuthenticationManager manager;
 
     @PostMapping
@@ -23,7 +29,7 @@ public class AutenticacionController {
         var token = new UsernamePasswordAuthenticationToken(datos.login(), datos.contrasena());
         var autentication = manager.authenticate(token);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(tokenService.generarToken((Usuario) autentication.getPrincipal()));
 
     }
 }
