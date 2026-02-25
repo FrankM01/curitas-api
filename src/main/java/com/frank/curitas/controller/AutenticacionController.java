@@ -2,6 +2,7 @@ package com.frank.curitas.controller;
 
 import com.frank.curitas.domain.usuario.DatosAutenticacion;
 import com.frank.curitas.domain.usuario.Usuario;
+import com.frank.curitas.infra.security.DatosTokenJWT;
 import com.frank.curitas.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,12 @@ public class AutenticacionController {
 
     @PostMapping
     public ResponseEntity iniciarSesion(@RequestBody @Valid DatosAutenticacion datos){
-        var token = new UsernamePasswordAuthenticationToken(datos.login(), datos.contrasena());
-        var autentication = manager.authenticate(token);
+        var authenticationToken = new UsernamePasswordAuthenticationToken(datos.login(), datos.contrasena());
+        var autentication = manager.authenticate(authenticationToken);
 
-        return ResponseEntity.ok(tokenService.generarToken((Usuario) autentication.getPrincipal()));
+        var tokenJWT = tokenService.generarToken((Usuario) autentication.getPrincipal());
+
+        return ResponseEntity.ok(new DatosTokenJWT(tokenJWT));
 
     }
 }
