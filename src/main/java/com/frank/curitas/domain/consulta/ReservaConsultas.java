@@ -1,0 +1,44 @@
+package com.frank.curitas.domain.consulta;
+
+import com.frank.curitas.domain.ValidacionException;
+import com.frank.curitas.domain.medico.Medico;
+import com.frank.curitas.domain.medico.MedicoRepository;
+import com.frank.curitas.domain.paciente.PacienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ReservaConsultas {
+
+    @Autowired
+    private MedicoRepository medicoRepository;
+
+    @Autowired
+    private PacienteRepository pacienteRepository;
+
+    @Autowired
+    private ConsultaRepository consultaRepository;
+
+    public void reservar(DatosReservaConsulta datos){
+
+        if(!pacienteRepository.existsById(datos.idPaciente())){
+            throw  new ValidacionException("No existe un paciente con el id informado");
+        }
+        if(datos.idMedico() != null && !medicoRepository.existsById(datos.idMedico())){
+            throw  new ValidacionException("No existe un medico con el id informado");
+        }
+
+
+        var medico = elegirMedico(datos);
+        var paciente = pacienteRepository.findById(datos.idPaciente()).get();
+
+        var consulta = new Consulta(null, medico, paciente, datos.fecha());
+
+        consultaRepository.save(consulta);
+
+    }
+
+    private Medico elegirMedico(DatosReservaConsulta datos) {
+        return null;
+    }
+}
