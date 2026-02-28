@@ -1,5 +1,6 @@
 package com.frank.curitas.controller;
 
+import com.frank.curitas.domain.consulta.DatosCancelamientoConsulta;
 import com.frank.curitas.domain.consulta.DatosDetalleConsulta;
 import com.frank.curitas.domain.consulta.DatosReservaConsulta;
 import com.frank.curitas.domain.consulta.ReservaConsultas;
@@ -25,5 +26,10 @@ public class ConsultaController {
     public ResponseEntity reservar(@RequestBody @Valid DatosReservaConsulta datos){
         reserva.reservar(datos);
         return ResponseEntity.ok(new DatosDetalleConsulta(null, null, null, null));
+    }
+
+    public ResponseEntity cancelar(@RequestBody @Valid DatosCancelamientoConsulta datos){
+        reserva.cancelar(datos);
+        return ResponseEntity.noContent().build();
     }
 }

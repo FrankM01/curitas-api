@@ -4,6 +4,7 @@ import com.frank.curitas.domain.ValidacionException;
 import com.frank.curitas.domain.medico.Medico;
 import com.frank.curitas.domain.medico.MedicoRepository;
 import com.frank.curitas.domain.paciente.PacienteRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ public class ReservaConsultas {
         var medico = elegirMedico(datos);
         var paciente = pacienteRepository.findById(datos.idPaciente()).get();
 
-        var consulta = new Consulta(null, medico, paciente, datos.fecha());
+        var consulta = new Consulta(null, medico, paciente, datos.fecha(), null);
 
         consultaRepository.save(consulta);
 
@@ -48,5 +49,13 @@ public class ReservaConsultas {
 
         return medicoRepository.elegirMedicoAleatorioDisponibleEnLaFecha(datos.especialidad(), datos.fecha());
 
+    }
+
+    public void cancelar(@Valid DatosCancelamientoConsulta datos) {
+        if(!consultaRepository.existsById(datos.idConsulta())){
+            throw new ValidacionException("ID de la consulta informado no existe!");
+        }
+        var consulta = consultaRepository.getReferenceById(datos.idConsulta());
+        consulta.cancelar(datos.motivo());
     }
 }
