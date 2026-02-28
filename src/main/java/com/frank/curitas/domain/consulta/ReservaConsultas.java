@@ -1,12 +1,15 @@
 package com.frank.curitas.domain.consulta;
 
 import com.frank.curitas.domain.ValidacionException;
+import com.frank.curitas.domain.consulta.validaciones.ValidadorDeConsultas;
 import com.frank.curitas.domain.medico.Medico;
 import com.frank.curitas.domain.medico.MedicoRepository;
 import com.frank.curitas.domain.paciente.PacienteRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ReservaConsultas {
@@ -20,6 +23,9 @@ public class ReservaConsultas {
     @Autowired
     private ConsultaRepository consultaRepository;
 
+
+    private List<ValidadorDeConsultas> validadores;
+
     public void reservar(DatosReservaConsulta datos){
 
         if(!pacienteRepository.existsById(datos.idPaciente())){
@@ -28,6 +34,11 @@ public class ReservaConsultas {
         if(datos.idMedico() != null && !medicoRepository.existsById(datos.idMedico())){
             throw  new ValidacionException("No existe un medico con el id informado");
         }
+
+        // validaciones
+        validadores.forEach(v -> {
+            v.validar(datos);
+        });
 
 
         var medico = elegirMedico(datos);
