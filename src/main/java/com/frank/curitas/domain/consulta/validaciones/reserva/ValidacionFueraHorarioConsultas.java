@@ -1,4 +1,4 @@
-package com.frank.curitas.domain.consulta.validaciones;
+package com.frank.curitas.domain.consulta.validaciones.reserva;
 
 import com.frank.curitas.domain.ValidacionException;
 import com.frank.curitas.domain.consulta.DatosReservaConsulta;
@@ -14,7 +14,7 @@ public class ValidacionFueraHorarioConsultas implements ValidadorDeConsultas{
         var horarioAntesDeAperturaClinica = fechaConsulta.getHour() < 7;
         var horarioDespuesDeCiererClinica = fechaConsulta.getHour() > 18;
         if(domingo || horarioAntesDeAperturaClinica || horarioDespuesDeCiererClinica) {
-            throw new ValidacionException("Horario seleccionado fuerad del h orario de atendimiento de la clinica");
+            throw new ValidacionException("Horario seleccionado fuera del horario de atencion de la clinica");
         }
 
     }

@@ -1,4 +1,4 @@
-package com.frank.curitas.domain.consulta.validaciones;
+package com.frank.curitas.domain.consulta.validaciones.reserva;
 
 import com.frank.curitas.domain.ValidacionException;
 import com.frank.curitas.domain.consulta.ConsultaRepository;
@@ -13,7 +13,7 @@ public class ValidacionMedicoConOtraConsultaEnElMismoHorario implements Validado
     private ConsultaRepository repository;
 
     public void validar(DatosReservaConsulta datos){
-        var medicoTieneOtraConsultaEnElMismoHorario = repository.existsByMedicoIdAndFecha(datos.idMedico(), datos.fecha());
+        var medicoTieneOtraConsultaEnElMismoHorario = repository.existsByMedicoIdAndFechaAndMotivoCancelamientoIsNull(datos.idMedico(), datos.fecha());
         if(medicoTieneOtraConsultaEnElMismoHorario){
             throw new ValidacionException("Medico ya tiene otra consulta en esa misma fecha y hora");
         }

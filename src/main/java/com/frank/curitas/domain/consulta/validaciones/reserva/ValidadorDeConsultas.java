@@ -1,4 +1,4 @@
-package com.frank.curitas.domain.consulta.validaciones;
+package com.frank.curitas.domain.consulta.validaciones.reserva;
 
 import com.frank.curitas.domain.consulta.DatosReservaConsulta;
 
