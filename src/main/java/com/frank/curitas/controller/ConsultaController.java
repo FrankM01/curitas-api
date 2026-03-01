@@ -4,6 +4,7 @@ import com.frank.curitas.domain.consulta.DatosCancelamientoConsulta;
 import com.frank.curitas.domain.consulta.DatosDetalleConsulta;
 import com.frank.curitas.domain.consulta.DatosReservaConsulta;
 import com.frank.curitas.domain.consulta.ReservaConsultas;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("consultas")
+@SecurityRequirement(name = "bearer-key")
 public class ConsultaController {
 
     @Autowired
